@@ -17,6 +17,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 	location.href = "http://fapiao.wbgj.cn/kpzs/home"
 </script>
-	123123
+	1231238888
 </body>
 </html>
