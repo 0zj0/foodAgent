@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name></display-name>
+	<!--servlet可以访问的静态资源 -->
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.txt</url-pattern>
+		<url-pattern>*.ico</url-pattern>
+		<url-pattern>/static/*</url-pattern>
+		<url-pattern>/html/*</url-pattern>
+	</servlet-mapping>
+	<servlet> <servlet-name>ProxoolConfigurator</servlet-name> <servlet-class> 
+		org.logicalcobwebs.proxool.configuration.ServletConfigurator</servlet-class> 
+		<init-param> <param-name>xmlFile</param-name> <param-value>WEB-INF/proxool.xml</param-value> 
+		</init-param> <load-on-startup>1</load-on-startup> </servlet>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/spring.xml</param-value>
+	</context-param>
+	<servlet>
+		<servlet-name>springMVC</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/spring-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>InitCacheServlet</servlet-name>
+		<servlet-class>com.doyd.server.init.InitCacheServlet</servlet-class>
+		<load-on-startup>4</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springMVC</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>login.html</welcome-file>
+	</welcome-file-list>
+	<session-config>
+		<session-timeout>3</session-timeout>
+	</session-config>
+	<error-page>
+		<error-code>400</error-code>
+		<location>/WEB-INF/view/error.jsp?code=400</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/view/error.jsp?code=404</location>
+	</error-page>
+	<error-page>
+		<error-code>406</error-code>
+		<location>/WEB-INF/view/error.jsp?code=406</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/view/error.jsp?code=500</location>
+	</error-page>
+	<error-page>
+		<error-code>505</error-code>
+		<location>/WEB-INF/view/error.jsp?code=505</location>
+	</error-page>
+
+	<filter>
+		<filter-name>characterEncodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>characterEncodingFilter</filter-name>
+		<url-pattern>*</url-pattern>
+	</filter-mapping>
+
+</web-app>

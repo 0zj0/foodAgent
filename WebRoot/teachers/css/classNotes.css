@@ -1,0 +1,48 @@
+/*班务通知主页样式*/
+.class_notes{
+    background: #fff;
+}
+/*新建班务通知样式*/
+.class_notes_title{
+    text-align: center;
+    padding:10px 50px 30px;
+    border-bottom: 2px dashed #D3E5E8;
+}
+.class_notes_title>input{
+    width:500px;
+    text-align: center;
+    font-size: 24px;
+    padding:13px;
+    border:2px dashed #D3E5E8;
+}
+/*班务通知预览样式*/
+.btn_group_bottom{
+    margin-top:20px;
+}
+.btn_group_bottom>button{
+    float:none;
+    margin-left:0;
+    margin-right:20px;
+}
+.icon_img_notes{
+     background: url(../images/assets/icon_left_notice_click.png) center;
+ }
+.work_name{
+    line-height: 65px;
+    padding-right:15px;
+    width:250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#time_input{
+    width:200px;
+}
+.send_ok{
+    display:none;
+    color:#FF8F1F;
+}
+.send_fail{
+    display:none;
+    color:#FF1B5D;
+}

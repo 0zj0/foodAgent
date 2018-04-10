@@ -1,0 +1,27 @@
+/*文件共享页面*/
+.member_management{
+    background: #fff;
+}
+.user_img_square{
+    display:inline-block;
+    width:30px;
+    height:30px;
+    text-align: center;
+    line-height: 30px;
+    margin-right:10px;
+}
+.user_img_square>img{
+    width:30px;
+    height:30px;
+}
+.same_table tr:hover{
+    background:#F1F2F9;
+}
+.phone_number_input{
+    padding:5px 10px;
+    width:90px;
+    border:none;
+}
+.icon_img_member{
+    background: url(../images/assets/icon_left_Administration_click.png) center;
+}

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="renderer" content="webkit">
+    <title>潮生活家长群助手</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/common.css?r=1.1">
+    <link rel="stylesheet" href="css/shareFile.css?r=1.1">
+</head>
+<body>
+    <!--页面顶部（logo和用户登录信息）-->
+    <div class="top">
+    <div class="logo">
+        <img src="images/assets/icon_logo.png" alt="">
+    </div>
+        <div class="user_info">
+            <div class="user_img">
+                <img id="user_img" src="" alt="">
+            </div>
+            <div class="user_name">
+                <a href="javascript:;">hi，<span id="user_name"></span></a>
+            </div>
+            <i class="left-border"></i>
+            <div class="user_quit">
+                <a href="javascript:;" id="logout">退出</a>
+            </div>
+        </div>
+    <div style="clear: both"></div>
+</div>
+    <!--主体内容-->
+    <div class="section">
+        <!--左侧导航栏-->
+        <div class="side_nav">
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item nav_item">
+                    <a href="index.html">
+                        <i class="icon_img icon_img_home"></i>
+                        首页
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="homework.html">
+                        <i class="icon_img icon_img_work"></i>
+                        布置作业
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="classNotes.html">
+                        <i class="icon_img icon_img_notes"></i>
+                        班务通知
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="transcript.html">
+                        <i class="icon_img icon_img_report"></i>
+                        成绩单
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="leave.html">
+                        <i class="icon_img icon_img_leave"></i>
+                        请假审批
+                        <img class="new_msg_mark" src="images/assets/icon_ exhibition_new message.png" alt="">
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item layui-this">
+                    <a href="shareFile.html">
+                        <i class="icon_img icon_img_file"></i>
+                        共享文件
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="memberManagement.html">
+                        <i class="icon_img icon_img_member"></i>
+                        成员管理
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--顶部导航栏-->
+        <div class="top_nav">
+            <div class="top_nav_box">
+                <div class="top_nav_title">
+                    选择班级
+                </div>
+                <div class="top_nav_tab">
+                    <div class="top_nav_more">
+                        <a href="javascript:;">更多</a>
+                    </div>
+                    <div class="top_nav_cancel">
+                        <a href="javascript:;">取消</a>
+                    </div>
+                </div>
+                <ul class="top_nav_list">
+                    <!--<li class="top_nav_item">-->
+                        <!--<a href="javascript:;" class="active">五年级一班家长群</a>-->
+                    <!--</li>-->
+
+                </ul>
+            </div>
+        </div>
+        <!--右侧内容-->
+        <div class="main">
+            <!--未绑定群的显示页面-->
+            <div class="empty_null">
+                <div class="img-box">
+                    <img src="images/assets/img_add%20class.png" alt="">
+                </div>
+                <h5>您还没有添加班级群，无法进行相关操作</h5>
+                <p>请去“微信小程序－潮生活家长群助手”添加</p>
+            </div>
+            <!--接口访问出错的显示页面-->
+            <div class="errorPage">
+                <div class="img-box">
+                    <img src="images/assets/error.png" alt="">
+                </div>
+                <h5>页面出错，请刷新重试！</h5>
+            </div>
+            <!--共享文件页面-->
+            <div class="share_file main-content">
+                <!--共享文件主页面-->
+                <div class="layui-form">
+                    <div class="new_top">
+                        <div class="new_title">
+                            共享文件管理
+                            <div>（共<span id="all_num"></span>条，其中<span style="color:#FF9D3B;">&nbsp;我发布的&nbsp;</span><span id="my_num"></span>条）</div>
+                        </div>
+                        <button type="button" id="send_file" class="layui-btn"><i class="layui-icon">&#xe681;</i>上传文件</button>
+                        <div class="fileType">仅支持doc、docx、xls、xlsx、pdf、ppt、pptx、mp4、jpg、png等文件</div>
+                    </div>
+                    <div class="send_file_box">
+                        <div class="send_file_title">
+                            上传进度
+                            <span>
+                                <span id="send_in_num">0</span>/
+                                <span id="send_all_num">0</span>
+                            </span>
+                        </div>
+                        <ul class="send_file_list">
+                            <!--<li class="send_file_item">-->
+                            <!--<div class="progress_bg">-->
+                            <!--</div>-->
+                            <!--<div class="item_detail">-->
+                            <!--<div class="shareFile_name">-->
+                            <!--<img src="images/assets/img_pdf.png" alt="">-->
+                            <!--五年级一班数学元旦假期作业-->
+                            <!--</div>-->
+                            <!--<div class="shareFile_size">-->
+                            <!--21M-->
+                            <!--</div>-->
+                            <!--<div class="shareFile_speed">-->
+                            <!--24.05% (502KB/s)-->
+                            <!--</div>-->
+                            <!--<div class="shareFile_remark">-->
+                            <!--<input class="shareFile_input" type="text" placeholder="请输入备注">-->
+                            <!--</div>-->
+                            <!--<div class="shareFile_operate">-->
+                            <!--<a href="javascript:;" class="confirm_sendFile">确认上传</a>-->
+                            <!--<a href="javascript:;" class="hue_red">删除</a>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="new_work_list">
+                            <div class="top_sel">
+                                <div class="layui-form">
+                                    <select name="">
+                                        <option value="0" selected="">发布者不限</option>
+                                        <option value="1">我发布的</option>
+                                        <option value="2">其他人发布的</option>
+                                    </select>
+                                </div>
+                                <div class="input_box">
+                                    <input type="text" id="input_search" class="search_input" placeholder="搜索文件名/上传人">
+                                    <div class="date_img_box" id="input_search_btn">
+                                        <img src="images/assets/icon_screen_search_click.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="delete_box">
+                                    <a href="javascript:;" onclick="delete_all()">删除选中</a>
+                                </div>
+                            </div>
+                            <!--表格列表-->
+                            <table class="same_table">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>
+                                        文件名
+                                    </th>
+                                    <th>大小</th>
+                                    <th>上传人</th>
+                                    <th>上传时间</th>
+                                    <th>
+                                        备注
+                                        <i class="layui-icon remark">&#xe642;</i>
+                                    </th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <!--<tr>-->
+                                    <!--<td>-->
+                                        <!--<input type="checkbox" name="like1[write]" lay-skin="primary" title="">-->
+                                        <!--<img src="images/assets/img_jpg.png" alt="">-->
+                                        <!--少儿艺术大赛冠军合照.jpg-->
+                                    <!--</td>-->
+                                    <!--<td class="hue_gray">-->
+                                        <!--236K-->
+                                    <!--</td>-->
+                                    <!--<td class="hue_gray">宋鸿丹</td>-->
+                                    <!--<td class="hue_gray">2017/07/22 12:00:34</td>-->
+                                    <!--<td class="hue_gray remark_detail">-->
+                                        <!--<input type="text" value="仅提供没科分数及总分排名" disabled>-->
+                                        <!--<a href="javascript:;" class="btn_img"></a>-->
+                                    <!--</td>-->
+                                    <!--<td class="tab_operate">-->
+                                        <!--<a href="javascript:;" class="hue_green">预览</a>-->
+                                        <!--<a href="javascript:;" class="hue_green">预览</a>-->
+                                        <!--<a href="javascript:;" class="hue_red">删除</a>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                                </tbody>
+                            </table>
+                            <!--分页-->
+                            <div class="pagination_box">
+                                <div class="sel_all">
+                                    <input type="checkbox" name="like1[write]" lay-skin="primary" lay-filter="allChoose" title="">
+                                    &nbsp;&nbsp;&nbsp;全选
+                                </div>
+                                <div class="delete_box">
+                                    <a href="javascript:;" onclick="delete_all()">删除选中</a>
+                                </div>
+                                <div class="btn_prev" onclick="prev_page()"></div>
+                                <span id="group_page_num">
+                                    <span id="page_now">1</span>/
+                                    <span id="page_all"></span>
+                                </span>
+                                <div class="btn_next" onclick="next_page()"></div>
+                                <input type="text" id="page_input" class="txt_input">
+                                <input type="button" class="btn_jump" onclick="jump_page()" value="跳转">
+                            </div>
+                            <div class="has_no_data">
+                                <div class="img-box">
+                                    <img src="images/assets/img_task_none.png" alt="">
+                                </div>
+                                <h5>还未发布过任何共享文件</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                copyright&copy;&nbsp;深圳市多易得信息技术股份有限公司&nbsp;&nbsp;&nbsp;&nbsp;粤ICP备&nbsp;14056892号-1
+            </div>
+        </div>
+    </div>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../layui/layui.all.js"></script>
+    <script src="../js/md5.js"></script>
+    <script src="../js/common.js?r=1.81"></script>
+    <script src="js/shareFile.js?r=1.61"></script>
+    <script src="../js/websocket.js?r=1.81"></script>
+</body>
+</html>

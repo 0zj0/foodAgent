@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- the proxool configuration can be embedded within your own application's.
+	Anything outside the "proxool" tag is ignored. -->
+<proxool-config>
+	<proxool>
+		<alias>db</alias>
+		<driver-class>com.mysql.jdbc.Driver</driver-class>
+		 
+		 <driver-url>
+			jdbc:mysql://192.168.2.10:3306/jzqzs?useUnicode=true&amp;characterEncoding=utf8
+		</driver-url>
+		<driver-properties>
+			<property name="user" value="doyd" />
+			<property name="password" value="doyd1913" />
+		</driver-properties> 
+		
+		<maximum-connection-count>500</maximum-connection-count>
+		<minimum-connection-count>5</minimum-connection-count>
+		<house-keeping-sleep-time>60000</house-keeping-sleep-time>
+		<simultaneous-build-throttle>10</simultaneous-build-throttle>
+		<prototype-count>15</prototype-count>
+		<test-before-use>true</test-before-use>
+		<test-after-use>true</test-after-use>
+		<house-keeping-test-sql>
+			select CURRENT_DATE
+		</house-keeping-test-sql>
+	</proxool>
+</proxool-config>

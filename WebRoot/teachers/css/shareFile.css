@@ -1,0 +1,120 @@
+/*文件共享页面*/
+.share_file{
+    background: #fff;
+}
+.icon_img_file{
+    background: url(../images/assets/icon_left_document_click.png) center;
+}
+.send_file_box{
+    display:none;
+    margin-top:20px;
+}
+.send_file_title{
+    height:40px;
+    line-height: 40px;
+    border: 1px solid #E4F2F4;
+    padding-left:15px;
+    color:#000;
+    background: #FAFCFC;
+}
+.send_file_title>span{
+    color:#3A3A3A;
+}
+.send_file_list{
+    border:1px solid #E4F2F4;
+    border-bottom: 0;
+    border-top: 0;
+}
+.send_file_item{
+    border-bottom:1px solid #D5E5E7;;
+    height:60px;
+    text-align: left;
+    background: #F5F9FA;
+    position:relative;
+}
+.progress_bg{
+    height:60px;
+    width:0;
+    transition: all 0.1s;
+    -webkit-transition:all .1s;
+    background: #effffe;
+    position:absolute;
+    z-index: 50;
+}
+.item_detail{
+    height:60px;
+}
+.item_detail>div{
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    /* height:60px; */
+    line-height: 60px;
+    position: relative;
+    bottom:3px;
+    z-index: 100;
+    display:inline-block;
+    overflow: hidden;
+}
+#send_file{
+    float:right;
+}
+.shareFile_name{
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    width:30%;
+    padding: 0 15px;
+}
+.shareFile_size{
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    width:10%;
+    padding: 0 15px;
+    text-align: center;
+}
+.shareFile_speed{
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    width:15%;
+    padding: 0 15px;
+    text-align: center;
+}
+.send_ok{
+    display:none;
+    color:#FF8F1F;
+}
+.send_fail{
+    display:none;
+    color:#FF1B5D;
+}
+.sendAgain{
+    display:none;
+}
+.shareFile_remark{
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    width:20%;
+    padding: 0 15px;
+    text-align: center;
+}
+.shareFile_remark>input{
+    padding:5px;
+    border:1px solid #D5E5E7;
+}
+.shareFile_operate{
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+    width:20%;
+    padding: 0 15px;
+    text-align: right;
+}
+.shareFile_operate>a{
+    margin-left:15px;
+}
+.confirm_sendFile{
+    visibility:hidden;
+    color:#fff;
+    background: #06C1AE;
+    padding:8px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+}

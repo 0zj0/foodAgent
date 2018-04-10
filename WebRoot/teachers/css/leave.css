@@ -1,0 +1,68 @@
+/*请假审批页面*/
+.leave{
+    background: #fff;
+}
+.leave_pending{
+    padding:2px 7px;
+    background: #FF1B5D;
+    color:#fff;
+    font-size: 14px;
+}
+.btn_leave_agree{
+    padding:5px 15px;
+    background: #06C1AE;
+    color:#fff;
+    border-radius: 3px;
+    -webkit-border-radius:3px;
+    behavior:url(pie.htc);-moz-border-radius:3px;
+    border:0;
+}
+.input_leave_disagree{
+    width:130px;
+    border:1px solid #D5E5E7;
+    border-radius: 3px 0 0 3px;
+    -webkit-border-radius:3px 0 0 3px;
+    behavior:url(pie.htc);-moz-border-radius:3px 0 0 3px;
+    padding:5px 5px 5px 5px;
+}
+.btn_leave_disagree{
+    padding:5px 15px;
+    background: #F4F9FA;
+    color:#000;
+    border-radius: 0 3px 3px 0;
+    -webkit-border-radius:0 3px 3px 0;
+    behavior:url(pie.htc);-moz-border-radius:0 3px 3px 0;
+    border:1px solid #D5E5E7;
+    margin-left:-5px;
+}
+.leave_approve{
+    padding:2px 7px;
+    background: #C0D4D6;
+    color:#fff;
+    font-size: 14px;
+}
+.icon_img_leave{
+    background: url(../images/assets/icon_left_leave_click.png) center;
+}
+.leave_reason{
+    width:180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.new_leave_num{
+    display:inline-block;
+    height:18px;
+    width:18px;
+    position:absolute;
+    top:15px;
+    right:-10px;
+    background: #FF1B5D;
+    color:#fff;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    text-align: center;
+    line-height: 18px;
+    font-size: 12px;
+}

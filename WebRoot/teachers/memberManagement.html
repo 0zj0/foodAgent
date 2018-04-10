@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="renderer" content="webkit">
+    <title>潮生活家长群助手</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/common.css?r=1.1">
+    <link rel="stylesheet" href="css/memberManagement.css">
+</head>
+<body>
+    <!--页面顶部（logo和用户登录信息）-->
+    <div class="top">
+    <div class="logo">
+        <img src="images/assets/icon_logo.png" alt="">
+    </div>
+        <div class="user_info">
+            <div class="user_img">
+                <img id="user_img" src="" alt="">
+            </div>
+            <div class="user_name">
+                <a href="javascript:;">hi，<span id="user_name"></span></a>
+            </div>
+            <i class="left-border"></i>
+            <div class="user_quit">
+                <a href="javascript:;" id="logout">退出</a>
+            </div>
+        </div>
+    <div style="clear: both"></div>
+</div>
+    <!--主体内容-->
+    <div class="section">
+         <!--左侧导航栏-->
+        <div class="side_nav">
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item nav_item">
+                    <a href="index.html">
+                        <i class="icon_img icon_img_home"></i>
+                        首页
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="homework.html">
+                        <i class="icon_img icon_img_work"></i>
+                        布置作业
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="classNotes.html">
+                        <i class="icon_img icon_img_notes"></i>
+                        班务通知
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="transcript.html">
+                        <i class="icon_img icon_img_report"></i>
+                        成绩单
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="leave.html">
+                        <i class="icon_img icon_img_leave"></i>
+                        请假审批
+                        <img class="new_msg_mark" src="images/assets/icon_ exhibition_new message.png" alt="">
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="shareFile.html">
+                        <i class="icon_img icon_img_file"></i>
+                        共享文件
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item layui-this">
+                    <a href="memberManagement.html">
+                        <i class="icon_img icon_img_member"></i>
+                        成员管理
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--顶部导航栏-->
+        <div class="top_nav">
+            <div class="top_nav_box">
+                <div class="top_nav_title">
+                    选择班级
+                </div>
+                <div class="top_nav_tab">
+                    <div class="top_nav_more">
+                        <a href="javascript:;">更多</a>
+                    </div>
+                    <div class="top_nav_cancel">
+                        <a href="javascript:;">取消</a>
+                    </div>
+                </div>
+                <ul class="top_nav_list">
+                    <!--<li class="top_nav_item">-->
+                        <!--<a href="javascript:;" class="active" name="1">五年级一班家长群</a>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+        <!--右侧内容-->
+        <div class="main">
+            <!--未绑定群的显示页面-->
+            <div class="empty_null">
+                <div class="img-box">
+                    <img src="images/assets/img_add%20class.png" alt="">
+                </div>
+                <h5>您还没有添加班级群，无法进行相关操作</h5>
+                <p>请去“微信小程序－潮生活家长群助手”添加</p>
+            </div>
+            <!--接口访问出错的显示页面-->
+            <div class="errorPage">
+                <div class="img-box">
+                    <img src="images/assets/error.png" alt="">
+                </div>
+                <h5>页面出错，请刷新重试！</h5>
+            </div>
+            <!--成员管理页面-->
+            <div class="member_management main-content">
+                <!--成员管理主页面-->
+                <div>
+                    <div class="new_top">
+                        <div class="new_title">
+                            成员管理
+                            <div>（共<span id="all_num"></span>人，其中<span style="color:#FF9D3B;">&nbsp;学生家长&nbsp;</span><span id="my_num"></span>人）</div>
+                        </div>
+                    </div>
+                    <div class="layui-form">
+                        <div class="new_work_list">
+                            <div class="top_sel">
+                                <div class="layui-input-block">
+                                    <select name="">
+                                        <option value="0" selected>成员身份不限</option>
+                                        <option value="3">班主任</option>
+                                        <option value="2">科系老师</option>
+                                        <option value="1">学生家长</option>
+                                    </select>
+                                </div>
+                                <div class="input_box">
+                                    <input type="text" id="input_search" class="search_input" placeholder="搜索称呼/昵称/手机号">
+                                    <div class="date_img_box" id="input_search_btn">
+                                        <img src="images/assets/icon_screen_search_click.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="delete_box">
+                                    <a href="javascript:;" onclick="delete_all()">删除选中</a>
+                                </div>
+                            </div>
+                            <table class="same_table">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>
+                                        头像/称呼
+                                    </th>
+                                    <th>身份</th>
+                                    <th>昵称</th>
+                                    <th>手机号</th>
+                                    <th id="operate_title">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!--<tr>-->
+                                    <!--<td>-->
+                                        <!--<input type="checkbox" name="like1[write]" lay-skin="primary" title="">-->
+                                        <!--<div class="user_img_square">-->
+                                            <!--<img src="images/assets/user_img.jpg" alt="">-->
+                                        <!--</div>-->
+                                        <!--常丁潮的妈妈-->
+                                    <!--</td>-->
+                                    <!--<td>-->
+                                        <!--学生家长-->
+                                    <!--</td>-->
+                                    <!--<td class="hue_gray">青鸟国际(股票代码:12930)</td>-->
+                                    <!--<td class="hue_gray">-->
+                                        <!--<input type="text" class="phone_number_input" value="18031636236" readonly>-->
+                                        <!--<a href="javascript:;" class="btn_img"></a>-->
+                                    <!--</td>-->
+                                    <!--<td class="tab_operate">-->
+                                        <!--<a href="javascript:;" class="hue_green">编辑手机号</a>-->
+                                        <!--<a href="javascript:;" class="hue_red">删除</a>-->
+                                        <!--<div class="confirm_delete">-->
+                                            <!--<div>-->
+                                                <!--该成员在此群助手内有一下两种身份，请选择你要删除的身份-->
+                                            <!--</div>-->
+                                            <!--<div>-->
+                                                <!--<input type="checkbox" name="like1[write]" lay-skin="primary" title="学生家长">-->
+                                                <!--<input type="checkbox" name="like1[write]" lay-skin="primary" title="科系老师">-->
+                                            <!--</div>-->
+                                            <!--<div>-->
+                                                <!--<button class="btn_confirm_delete" onclick="delete_one()">确认</button>-->
+                                                <!--<button class="btn_confirm_cancel" onclick="cancel()">取消</button>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                                </tbody>
+                            </table>
+                            <div class="pagination_box">
+                                <div class="delete_box">
+                                    <a href="javascript:;" onclick="delete_all()">删除选中</a>
+                                </div>
+                                <div class="btn_prev" onclick="prev_page()"></div>
+                                <span id="group_page_num">
+                                    <span id="page_now">1</span>/
+                                    <span id="page_all"></span>
+                                </span>
+                                <div class="btn_next" onclick="next_page()"></div>
+                                <input type="text" id="page_input" class="txt_input">
+                                <input type="button" class="btn_jump" onclick="jump_page()" value="跳转">
+                            </div>
+                            <div class="has_no_data">
+                                <div class="img-box">
+                                    <img src="images/assets/img_task_none.png" alt="">
+                                </div>
+                                <h5>该群还未绑定任何群成员</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                copyright&copy;&nbsp;深圳市多易得信息技术股份有限公司&nbsp;&nbsp;&nbsp;&nbsp;粤ICP备&nbsp;14056892号-1
+            </div>
+        </div>
+    </div>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../layui/layui.all.js"></script>
+    <script src="../js/common.js?r=1.81"></script>
+    <script src="js/memberManagement.js?r=1.3"></script>
+    <script src="../js/websocket.js?r=1.81"></script>
+</body>
+</html>

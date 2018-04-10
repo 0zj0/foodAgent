@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>潮生活家长群助手</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="login_title">
+        <img src="teachers/images/assets/img_login_logo.png" alt="">
+    </div>
+    <div class="login_main">
+        <img class="cover_img" src="teachers/images/assets/img_login_decorate.png" alt="">
+        <div class="login_box">
+            <h2 class="login_detail_title">
+                手机扫码，安全登录
+            </h2>
+            <div class="QR_code_box">
+                <img id="qrcode" src="teachers/images/assets/timg.gif" alt="">
+                <div class="mask_layer">
+                    <div class="mask_img">
+                        <img src="teachers/images/assets/icon_login_ok.png" alt="">
+                    </div>
+                    <div class="mask_msg">
+                        <p id="state_msg">扫码成功</p>
+                        <p><a id="state_operate" href="javascript:;"></a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="login_text">
+                <div class="QR_code_img">
+                    <img src="teachers/images/assets/icon_login_scan.png" alt="">
+                </div>
+                <div class="login_text_detail">
+                    <p>打开<span>手机微信</span>扫一扫二维码登录</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/common.js?r=1.92"></script>
+    <script src="js/login.js?r=1.3"></script>
+    <script src="layui/layui.all.js"></script>
+    <script src="js/websocket.js?r=1.81"></script>
+</body>
+</html>

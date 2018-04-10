@@ -1,0 +1,113 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="          
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd          
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd          
+      http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd          
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd          
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+      http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+      http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd">
+
+	<!-- -->
+
+	<!-- -->
+	<!-- 启动注解驱动的Spring MVC功能，注册请求url和注解POJO类方法的映射 -->
+	<mvc:annotation-driven />
+
+	<!-- <mvc:resources mapping="/static/**" location="/static/"/> -->
+	<!-- 启动包扫描功能，以便注册带有@Controller、@Service、@repository、@Component等注解的类成为spring的bean -->
+	<context:component-scan base-package="com.doyd" />
+	<bean
+		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="favorPathExtension" value="true" />
+		<property name="favorParameter" value="true" />
+		<property name="ignoreAcceptHeader" value="true"></property>
+		<property name="defaultContentType" value="text/html" />
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json" />
+				<entry key="xml" value="application/xml" />
+				<entry key="html" value="text/html" />
+				<entry key="file" value="application/octet-stream" />
+				<entry key="image" value="image/*" />
+			</map>
+		</property>
+	</bean>
+
+	<!--避免IE执行AJAX时，返回JSON出现下载文件 -->
+	<bean id="mappingJacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" />
+			</list>
+		</property>
+	</bean>
+	<mvc:default-servlet-handler />
+
+	<!-- 定义文件上传的解析器 ，当提交的参数是file类型，这个解析器会自动拦截进行参数的处理 -->
+	<!-- <bean id="multipartResolver" class="com.doyd.core.uploader.CustomMultipartResolver" 
+		p:defaultEncoding="utf-8"> <property name="maxUploadSize" value="100000000" 
+		/> </bean> -->
+	<!-- SpringMVC在超出上传文件限制时,会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->
+	<!-- 该异常是SpringMVC在检查上传的文件信息时抛出来的,而且此时还没有进入到Controller方法中 -->
+	<!-- <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
+		<property name="exceptionMappings"> <props> -->
+	<!-- 遇到MaxUploadSizeExceededException异常时,自动跳转到/WEB-INF/view/error_fileupload.jsp页面 -->
+	<!-- <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error_fileupload</prop> 
+		</props> </property> </bean> -->
+	<!-- <bean id="exceptionHandler" class="com.doyd.core.exception.MyExceptionHandler"/> -->
+
+
+	<!-- 拦截器配置 -->
+	
+	<mvc:interceptors>
+		<mvc:interceptor>
+            <mvc:mapping path="/**/*.html" />
+            <mvc:exclude-mapping path="/login.html"/>
+			<bean class="com.doyd.module.pc.interceptor.HtmlInterceptor">
+			</bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+            <mvc:mapping path="/applet/**/*" />
+            <mvc:mapping path="/pc/**/*" />
+            <mvc:exclude-mapping path="/pc/sign"/>
+            <mvc:exclude-mapping path="/image/**/*"/>
+			<bean class="com.doyd.core.interceptor.SignInterceptor">
+			</bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+            <mvc:mapping path="/pc/**/*" />
+            <mvc:exclude-mapping path="/pc/sign"/>
+            <mvc:exclude-mapping path="/pc/files/preview"/>
+            <mvc:exclude-mapping path="/pc/login/qrcode"/>
+            <mvc:exclude-mapping path="/pc/login/websocket"/>
+			<bean class="com.doyd.module.pc.interceptor.LoginInterceptor">
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- 对模型视图名称的解析，在请求时模型视图名称添加前后缀 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView">
+		</property>
+		<property name="prefix" value="/WEB-INF/view/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+</beans>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="renderer" content="webkit">
+    <title>潮生活家长群助手作业页面</title>
+    <link rel="stylesheet" href="../layui/css/layui.css">
+    <link rel="stylesheet" href="../css/common.css?r=1.1">
+    <link rel="stylesheet" href="css/homework.css?r=1.1">
+</head>
+<body>
+    <!--页面顶部（logo和用户登录信息）-->
+    <div class="top">
+    <div class="logo">
+        <img src="images/assets/icon_logo.png" alt="">
+    </div>
+    <div class="user_info">
+        <div class="user_img">
+            <img id="user_img" src="" alt="">
+        </div>
+        <div class="user_name">
+            <a href="javascript:;">hi，<span id="user_name"></span></a>
+        </div>
+        <i class="left-border"></i>
+        <div class="user_quit">
+            <a href="javascript:;" id="logout">退出</a>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+</div>
+    <!--主体内容-->
+    <div class="section">
+         <!--左侧导航栏-->
+        <div class="side_nav">
+            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item nav_item">
+                    <a href="index.html">
+                        <i class="icon_img icon_img_home"></i>
+                        首页
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item layui-this">
+                    <a href="homework.html">
+                        <i class="icon_img icon_img_work"></i>
+                        布置作业
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="classNotes.html">
+                        <i class="icon_img icon_img_notes"></i>
+                        班务通知
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="transcript.html">
+                        <i class="icon_img icon_img_report"></i>
+                        成绩单
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="leave.html">
+                        <i class="icon_img icon_img_leave"></i>
+                        请假审批
+                        <img class="new_msg_mark" src="images/assets/icon_ exhibition_new message.png" alt="">
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="shareFile.html">
+                        <i class="icon_img icon_img_file"></i>
+                        共享文件
+                    </a>
+                </li>
+                <li class="layui-nav-item nav_item">
+                    <a href="memberManagement.html">
+                        <i class="icon_img icon_img_member"></i>
+                        成员管理
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--顶部导航栏-->
+        <div class="top_nav">
+            <div class="top_nav_box">
+                <div class="top_nav_title">
+                    选择班级
+                </div>
+                <div class="top_nav_tab">
+                    <div class="top_nav_more">
+                        <a href="javascript:;">更多</a>
+                    </div>
+                    <div class="top_nav_cancel">
+                        <a href="javascript:;">取消</a>
+                    </div>
+                </div>
+                <ul class="top_nav_list">
+                    <!--<li class="top_nav_item">-->
+                        <!--<a href="javascript:;" class="active">五年级一班家长群</a>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+         <!--右侧内容-->
+        <div class="main">
+            <!--未绑定群的显示页面-->
+            <div class="empty_null">
+                <div class="img-box">
+                    <img src="images/assets/img_add%20class.png" alt="">
+                </div>
+                <h5>您还没有添加班级群，无法进行相关操作</h5>
+                <p>请去“微信小程序－潮生活家长群助手”添加</p>
+            </div>
+            <!--接口访问出错的显示页面-->
+            <div class="errorPage">
+                <div class="img-box">
+                    <img src="images/assets/error.png" alt="">
+                </div>
+                <h5>页面出错，请刷新重试！</h5>
+            </div>
+            <!--作业页面-->
+            <div class="homework main-content">
+                <!--作业页面主页-->
+                <div class="homework_main">
+                    <div class="new_top">
+                        <div class="new_title">
+                            作业管理
+                            <div>（共<span id="all_num"></span>条，其中<span style="color:#FF9D3B;">&nbsp;我发布的&nbsp;</span><span id="my_num"></span>条）</div>
+                        </div>
+                        <a href="javascript:;">
+                            <i class="layui-icon">&#xe654;</i>
+                            新建作业
+                        </a>
+                    </div>
+                    <div>
+                        <div class="new_work_list">
+                            <div class="top_sel">
+                                <div id="selCheck" class="layui-form">
+                                    <select name="">
+                                        <option value="0" selected="">发布者不限</option>
+                                        <option value="1">我发布的</option>
+                                        <option value="2">其他人发布的</option>
+                                    </select>
+                                </div>
+                                <div class="input_box">
+                                    <div class="layui-form">
+                                        <input type="text" id="date_search" readonly class="layui-input" placeholder="按日期查询">
+                                        <div class="date_img_box">
+                                            <img src="images/assets/icon_date_normal.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input_box">
+                                    <input type="text" id="input_search" class="search_input" placeholder="搜索作业内容/发布人">
+                                    <div class="date_img_box" id="input_search_btn">
+                                        <img src="images/assets/icon_screen_search_click.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="delete_box">
+                                    <a href="javascript:;" onclick="delete_all()">删除选中</a>
+                                </div>
+                            </div>
+                            <table class="same_table layui-form" id="homework_table">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>
+                                        作业内容
+                                    </th>
+                                    <th>附件</th>
+                                    <th>发布人</th>
+                                    <th>发布时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!--<tr>-->
+                                    <!--<td>-->
+                                        <!--<input type="checkbox" name="like1[write]" lay-skin="primary" title="">-->
+                                        <!--背诵第二课第一单元“荷塘月色”第四段，从背诵第二课第一单元“荷塘月色”第四段…-->
+                                    <!--</td>-->
+                                    <!--<td>-->
+                                        <!--<img src="images/assets/img_doc.png" alt="">-->
+                                        <!--<img src="images/assets/img_photo_gray.png" alt="">-->
+                                        <!--<img src="images/assets/img_jpg.png" alt="">-->
+                                    <!--</td>-->
+                                    <!--<td class="hue_gray">吴格格</td>-->
+                                    <!--<td class="hue_gray">2017/07/22 12:00:34</td>-->
+                                    <!--<td class="tab_operate">-->
+                                        <!--<a href="javascript:;" class="hue_green">查看详情</a>-->
+                                        <!--<a href="javascript:;" class="hue_red">删除</a>-->
+                                        <!--<div class="confirm_delete">-->
+                                            <!--<div>-->
+                                                <!--删除后、老师/班主任将无法查看此作业的详情，确认删除该作业？-->
+                                            <!--</div>-->
+                                            <!--<div>-->
+                                                <!--<button class="btn_confirm_delete" onclick="delete_one()">确认</button>-->
+                                                <!--<button class="btn_confirm_cancel" onclick="cancel()">取消</button>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</td>-->
+                                <!--</tr>-->
+                                </tbody>
+                            </table>
+                            <div class="pagination_box layui-form">
+                                <div class="sel_all">
+                                    <input type="checkbox" name="like1[write]" lay-skin="primary" lay-filter="allChoose" title="">
+                                    &nbsp;&nbsp;&nbsp;全选
+                                </div>
+                                <div class="delete_box">
+                                    <a href="javascript:;" onclick="delete_all()">删除选中</a>
+                                </div>
+                                <div class="btn_prev"></div>
+                                <span id="group_page_num">
+                                    <span id="page_now">1</span>/
+                                    <span id="page_all"></span>
+                                </span>
+                                <div class="btn_next"></div>
+                                <input type="text" id="page_input" class="txt_input">
+                                <input type="button" class="btn_jump" value="跳转">
+                            </div>
+                            <div class="has_no_data">
+                                <div class="img-box">
+                                    <img src="images/assets/img_task_none.png" alt="">
+                                </div>
+                                <h5>还未发布过任何作业</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--新建作业页面-->
+                <a href="javascript:;" id="downLoad" download=""></a>
+                <div class="new" style="display: none">
+                    <div class="new_file_top">
+                        <a id="newBack" href="javascript:;">
+                            作业管理&nbsp;&nbsp;/&nbsp;&nbsp;
+                        </a>
+                        新建作业
+                    </div>
+                    <div class="new_detail">
+                        <div class="new_detail_top">
+                            <div id="homework_img" class="homework_img">
+                                <img src="images/assets/icon_photo_click.png" alt="">
+                                <a href="javascript:;">图片</a>
+                            </div>
+                            <div id="homework_file" class="homework_file">
+                                <img src="images/assets/icon_document_click.png" alt="">
+                                <a href="javascript:;">附件</a>
+                            </div>
+                            <p>仅支持doc、docx、xls、xlsx、pdf、ppt、pptx、mp4、jpg、png等文件</p>
+                        </div>
+                        <ul class="send_img_list">
+                            <!--<li class="send_img_item">-->
+                                <!--<img src="images/assets/icon_close.png" class="close_img" alt="">-->
+                                <!--<div class="send_img_box">-->
+                                    <!--<img src="images/assets/user_img.jpg" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="mask_layer">-->
+                                    <!--<img src="images/assets/icon_class_close_normal.png" alt="">-->
+                                    <!--<div class="circleProgress_wrapper">-->
+                                        <!--<div class="wrapper right">-->
+                                            <!--<div class="circleProgress rightcircle"></div>-->
+                                        <!--</div>-->
+                                        <!--<div class="wrapper left">-->
+                                            <!--<div class="circleProgress leftcircle"></div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</li>-->
+                            <!--<li class="send_img_item">-->
+                                <!--<img src="images/assets/icon_close.png" class="close_img" alt="">-->
+                                <!--<div class="send_img_box">-->
+                                    <!--<img src="images/assets/user_img.jpg" alt="">-->
+                                <!--</div>-->
+                                <!--<div class="mask_layer">-->
+                                    <!--<p>-->
+                                        <!--<i class="layui-icon">&#x1002;</i>-->
+                                    <!--</p>-->
+                                    <!--<p>重新上传</p>-->
+                                <!--</div>-->
+                            <!--</li>-->
+                            <!--<li class="send_img_item">-->
+                                <!--<img src="images/assets/icon_close.png" class="close_img" alt="">-->
+                                <!--<div class="send_img_box">-->
+                                    <!--<img src="images/assets/user_img.jpg" alt="">-->
+                                <!--</div>-->
+                            <!--</li>-->
+                        </ul>
+                        <table class="file_table">
+                            <!--<tr>-->
+                                <!--<td>-->
+                                    <!--<img src="images/assets/img_pdf.png" alt="">-->
+                                    <!--五年级一班数学元旦假期作业.pdf-->
+                                <!--</td>-->
+                                <!--<td>0.3M / 1.35M</td>-->
+                                <!--<td class="file_table_progress">-->
+                                    <!--<div style="width:160px">-->
+                                        <!--<div class="layui-progress">-->
+                                            <!--<div class="layui-progress-bar" lay-percent="50%"></div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div>-->
+                                        <!--<p><span style="color:#06C1AE;">1.00M/s</span>&nbsp;&nbsp;&nbsp;&nbsp;-剩余:0:00:10</p>-->
+                                    <!--</div>-->
+                                <!--</td>-->
+                                <!--<td class="file_table_delete">-->
+                                    <!--<a href="javascript:;">删除</a>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        </table>
+                        <div class="enter_box">
+                            <textarea name="" id="textContent" rows="3"  maxlength="300" placeholder="作业内容"></textarea>
+                            <p class="remaining_word">您最多还可输入<span id="leftSize" style="color:#FF8F1F;">300</span>个字</p>
+                        </div>
+                    </div>
+                    <div class="layui-form">
+                        <ul class="require_time_list">
+                            <li class="require_time_item">
+                                <p class="require_time_title">截止完成日期</p>
+                                <div class="layui-inline">
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input" id="test12" readonly placeholder="年-月-日">
+                                        <div id="testTime" class="date_img_box">
+                                            <img src="images/assets/icon_data_click.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="require_time_item">
+                                <p class="require_time_title">要求完成时间(分钟)</p>
+                                <input id="need_time" type="text">
+                                <div class="date_img_box">
+                                    <img class="date_img_shang" src="images/assets/icon_shang_click.png" alt="">
+                                    <img class="date_img_xia" src="images/assets/icon_xia_click.png" alt="">
+                                </div>
+                            </li>
+                            <li class="require_time_item">
+                                <p class="require_time_title">学科/任教科目</p>
+                                <div class="layui-form-item" id="subject">
+                                    <div class="layui-input-block">
+                                        <select name="subject" lay-filter="xuke">
+                                            <option value="语文" selected="">语文</option>
+                                            <option value="数学">数学</option>
+                                            <option value="英语">英语</option>
+                                            <option value="物理">物理</option>
+                                            <option value="化学">化学</option>
+                                            <option value="生物">生物</option>
+                                            <option value="政治">政治</option>
+                                            <option value="地理">地理</option>
+                                            <option value="历史">历史</option>
+                                            <option value="音乐">音乐</option>
+                                            <option value="美术">美术</option>
+                                            <option value="体育">体育</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="require_time_item">
+                                <a href="javascript:;" class="add_objs">添加学科分类</a>
+                                <div class="add_object">
+                                    <p>添加学科</p>
+                                    <div>
+                                        <input type="text" class="object_input" placeholder="请输入所布置作业的学科">
+                                    </div>
+                                    <div>
+                                        <button class="btn_confirm_add">确认</button>
+                                        <button class="btn_add_cancel">取消</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="btn_group">
+                            <button class="btn_release_new">发布作业</button>
+                            <button class="btn_cancel_new">取消</button>
+                            <button class="btn_preview_new">预览</button>
+                        </div>
+                    </div>
+                </div>
+                <!--作业预览页面-->
+                <div class="preview" style="display: none">
+                    <div class="new_file_top">
+                        <a href="javascript:;">
+                            作业管理&nbsp;&nbsp;/&nbsp;&nbsp;
+                        </a>
+                        新建作业
+                        <button class="btn_confirm_release">确认发布</button>
+                        <button class="btn_Continue_edit">返回继续编辑</button>
+                    </div>
+                    <div class="preview_notice">
+                        <img src="images/assets/icon_ exhibition_notice.png" alt="">
+                        通知：此页面仅限于临时预览。确认发布后，该班群家长将收到正式的作业通知。
+                    </div>
+                    <div class="preview_subject_title">
+                        <h1></h1>
+                        <div class="preview_user_info">
+                            <a href="javascript:;"></a>&nbsp;&nbsp;
+                            <span class="preview_user_time">
+
+                        </span> ·
+                            <span class="preview_user_name"> </span>
+                        </div>
+                    </div>
+                    <div class="preview_homework_detail">
+                        <h4 class="text_title">
+                            <img src="images/assets/icon_ exhibition_document.png" alt="">
+                            作业内容
+                        </h4>
+                        <div id="work" class="text_detail">
+
+                        </div>
+                        <h4 class="text_title">
+                            <img src="images/assets/icon_ exhibition_time.png" alt="">
+                            截止完成时间
+                        </h4>
+                        <h5 id="finish_time" class="text_detail"></h5>
+                        <h4 class="text_title work_time">
+                            <img src="images/assets/icon_ exhibition_clock.png" alt="">
+                            要求完成时间
+                        </h4>
+                        <h5 id="work_time" class="text_detail"></h5>
+                        <h4 class="text_title">
+                            <img src="images/assets/icon_ exhibition_floder.png" alt="">
+                            附件内容
+                            <span class="file_num">（2个）</span>
+                        </h4>
+                        <div class="file_download_list_box">
+                            <ul class="file_download_list">
+                                <!--<li class="file_download_item">-->
+                                    <!--<div>-->
+                                        <!--<div class="file_img_box">-->
+                                            <!--<img src="images/assets/img_doc_bigger.png" alt="">-->
+                                        <!--</div>-->
+                                        <!--<div class="file_detail">-->
+                                            <!--<p class="file_detail_name">-->
+                                                <!--五年级一班数学元旦假期作业.pdf-->
+                                                <!--<span>（1.35M）</span>-->
+                                            <!--</p>-->
+                                            <!--<div>-->
+                                                <!--<a href="javascript:;" onclick="preview_page()">预览</a>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                            </ul>
+                        </div>
+                        <div class="btn_group_bottom">
+                            <button class="btn_confirm_release">确认发布</button>
+                            <button class="btn_Continue_edit">返回继续编辑</button>
+                            <div style="clear:both;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--作业详情页面-->
+                <div class="detail" style="display:none"></div>
+            </div>
+            <div class="footer">
+                copyright&copy;&nbsp;深圳市多易得信息技术股份有限公司&nbsp;&nbsp;&nbsp;&nbsp;粤ICP备&nbsp;14056892号-1
+            </div>
+        </div>
+    </div>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../layui/layui.all.js"></script>
+    <script src="../js/md5.js"></script>
+    <script src="../js/common.js?r=1.81"></script>
+    <script src="js/homework.js?r=1.71"></script>
+    <script src="../js/websocket.js?r=1.81"></script>
+</body>
+</html>
