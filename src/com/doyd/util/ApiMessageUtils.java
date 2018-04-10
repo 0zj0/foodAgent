@@ -17,6 +17,8 @@ import org.doyd.utils.WeiXinSign;
 public class ApiMessageUtils {
 
 	
+	
+	
 	/**
 	 * 向远处服务器发送消息
 	 * @author wjs
