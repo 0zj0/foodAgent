@@ -10,12 +10,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>潮生活开票助手</title>
+	<title>潮生活开票助手111</title>
 </head>
 <body>
 
 <script type="text/javascript">
-	location.href = "http://fapiao.wbgj.cn/kpzs/home";
+	location.href = "http://fapiao.wbgj.cn/kpzs/home"
 </script>
+	123123
 </body>
 </html>
